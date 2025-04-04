@@ -6,7 +6,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { observable } from "@legendapp/state";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
-const supabase = createClient(
+import { Database } from "@/utils/database.types";
+const supabase = createClient<Database>(
   process.env.EXPO_PUBLIC_SUPABASE_URL!,
   process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!
 );
