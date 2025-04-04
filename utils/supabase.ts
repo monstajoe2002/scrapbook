@@ -22,7 +22,7 @@ const customSynced = configureSynced(syncedSupabase, {
   supabase,
   changesSince: "last-sync",
   fieldCreatedAt: "created_at",
-  fieldUpdatedAt: "updated_at",
+  // fieldUpdatedAt: "updated_at",
 });
 
 export const scraps$ = observable(
@@ -30,9 +30,7 @@ export const scraps$ = observable(
     supabase,
     collection: "scraps",
     select: (from) =>
-      from.select(
-        "id, screenshot_url, note,voice_recording_url, created_at, updated_at"
-      ),
+      from.select("id, screenshot_url, note,voice_recording_url, created_at"),
     actions: ["read", "create", "update", "delete"],
     realtime: true, // Enable realtime updates
     persist: {
