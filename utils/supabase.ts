@@ -17,7 +17,7 @@ const customSynced = configureSynced(syncedSupabase, {
   persist: {
     plugin: observablePersistAsyncStorage({ AsyncStorage }),
   },
-  generateId: () => crypto.randomUUID(),
+  generateId,
   supabase,
   changesSince: "last-sync",
   fieldCreatedAt: "created_at",
