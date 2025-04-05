@@ -15,16 +15,18 @@
       "intentFilters": [
         {
           "action": "android.intent.action.SEND",
-          "data": [
-            {
-              "mimeType": "image/*"
-            }
-          ],
-          "category": ["android.intent.category.DEFAULT"]
+          "data": [{ "mimeType": "text/*" }, { "mimeType": "image/*" }],
+          "category": [
+            "android.intent.category.DEFAULT",
+            "android.intent.category.BROWSABLE"
+          ]
         },
         {
           "action": "android.intent.action.VIEW",
-          "category": ["android.intent.category.DEFAULT", "android.intent.category.BROWSABLE"],
+          "category": [
+            "android.intent.category.DEFAULT",
+            "android.intent.category.BROWSABLE"
+          ],
           "data": {
             "scheme": "scrapbook"
           }
@@ -34,7 +36,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.monstajoe.scrapbook"
+      "package": "com.anonymous.scrapbook"
     },
     "web": {
       "bundler": "metro",
