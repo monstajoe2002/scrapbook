@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { View, Text, Linking } from "react-native";
-import * as IntentLauncher from "expo-intent-launcher";
 type DeepLinkEvent = { url: string };
 
 const handleDeepLink = ({ url }: DeepLinkEvent) => {

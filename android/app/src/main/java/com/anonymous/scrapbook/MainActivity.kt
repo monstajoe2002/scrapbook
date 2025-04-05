@@ -12,36 +12,6 @@ import com.facebook.react.defaults.DefaultReactActivityDelegate
 import expo.modules.ReactActivityDelegateWrapper
 
 class MainActivity : ReactActivity() {
-  override fun onNewIntent(intent: Intent?) {
-    super.onNewIntent(intent)
-    handleSendIntent(intent)
-  }
-
-  private fun handleSendIntent(intent: Intent?) {
-    if (intent?.action == Intent.ACTION_SEND) {
-      when (intent.type) {
-        "text/plain" -> {
-          val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-          if (sharedText != null) {
-            sendToReactNative("text", sharedText)
-          }
-        }
-        "image/*", "image/jpeg", "image/png", "image/gif" -> {
-          val imageUri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
-          if (imageUri != null) {
-            sendToReactNative("image", imageUri.toString())
-          }
-        }
-      }
-    }
-  }
-
-  private fun sendToReactNative(type: String, data: String) {
-    // Send data to React Native via Deep Linking
-    val url = "myapp://share?type=$type&data=${Uri.encode(data)}"
-    intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-    startActivity(intent)
-  }
   override fun onCreate(savedInstanceState: Bundle?) {
     // Set the theme to AppTheme BEFORE onCreate to support
     // coloring the background, status bar, and navigation bar.
@@ -92,4 +62,5 @@ class MainActivity : ReactActivity() {
       // because it's doing more than [Activity.moveTaskToBack] in fact.
       super.invokeDefaultOnBackPressed()
   }
+
 }
