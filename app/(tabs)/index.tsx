@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { View, Text, Linking } from "react-native";
+import { View, Text } from "react-native";
+import * as Linking from "expo-linking";
 type DeepLinkEvent = { url: string };
 
 const handleDeepLink = ({ url }: DeepLinkEvent) => {
@@ -15,21 +16,15 @@ const handleDeepLink = ({ url }: DeepLinkEvent) => {
 };
 
 const HomeScreen = () => {
-  useEffect(() => {
-    // Check if app was opened by a deep link
-    Linking.getInitialURL()
-      .then((url) => {
-        if (url) handleDeepLink({ url });
-      })
-      .catch(console.error);
-
-    // Listen for incoming links while the app is open
-    Linking.addEventListener("url", handleDeepLink);
-
-    return () => {
-      Linking.removeAllListeners("url");
-    };
-  }, []);
+  const url = Linking.useURL();
+  if (url) {
+    const { hostname, path, queryParams } = Linking.parse(url);
+    console.log(
+      `Linked to app with hostname: ${hostname}, path: ${path} and data: ${JSON.stringify(
+        queryParams
+      )}`
+    );
+  }
   return (
     <View>
       <Text>Hello, World!</Text>
